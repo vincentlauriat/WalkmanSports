@@ -1,0 +1,422 @@
+/* Walkman Sports — la page est la face avant du WM-F35 : plastique jaune, caoutchouc, sérigraphie.
+   Couleurs relevées dans WalkmanSports/Views/Kit/Palette.swift. */
+:root {
+  --plastic: #FCC40A;
+  --plastic-shade: #D69900;
+  --plastic-light: #FFDE52;
+  --rubber: #262626;
+  --rubber-light: #454545;
+  --ink: #3D3D3D;
+  --sports-blue: #1259C2;
+  --window-green: #14B38C;
+  --paper: #F5F0E0;
+  --led: #FF291A;
+
+  --measure: 34rem;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+  --radius-key: 0.8rem;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: "Archivo", system-ui, sans-serif;
+  font-variation-settings: "wdth" 100;
+  font-size: 1.125rem;
+  line-height: 1.55;
+  color: var(--ink);
+  background-color: var(--plastic);
+  /* Grain du plastique moulé. */
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .38 0 0 0 0 0 0 0 0 .22 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    linear-gradient(180deg, var(--plastic-light) 0%, var(--plastic) 30%, var(--plastic) 100%);
+}
+
+img { display: block; max-width: 100%; height: auto; }
+
+a { color: inherit; }
+
+:focus-visible {
+  outline: 3px solid var(--sports-blue);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.skip {
+  position: absolute;
+  left: -999px;
+  top: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: var(--rubber);
+  color: var(--paper);
+  z-index: 10;
+}
+.skip:focus { left: 0.5rem; }
+
+h1, h2, h3 { margin: 0; color: var(--rubber); }
+
+h2 {
+  font-size: clamp(1.9rem, 3.6vw, 2.9rem);
+  font-variation-settings: "wdth" 112;
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  font-size: 1.6rem;
+  font-variation-settings: "wdth" 108;
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+p { margin: 0; }
+
+/* En-tête : une bande de caoutchouc, comme la barre de touches. */
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem var(--gutter);
+}
+
+.brand {
+  font-weight: 800;
+  font-variation-settings: "wdth" 120;
+  text-decoration: none;
+  color: var(--rubber);
+}
+
+.top nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  padding: 0.3rem;
+  border-radius: var(--radius-key);
+  background: var(--rubber);
+}
+
+.top nav a {
+  padding: 0.35rem 0.8rem;
+  border-radius: 0.55rem;
+  color: #E8E3D3;
+  font-size: 0.95rem;
+  text-decoration: none;
+}
+.top nav a:hover { background: var(--rubber-light); }
+
+/* Accroche : la sérigraphie du WM-F35, en très grand. */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 5rem);
+  padding: clamp(2rem, 6vw, 5rem) var(--gutter) clamp(3rem, 8vw, 6rem);
+  max-width: 82rem;
+  margin: 0 auto;
+}
+
+.hero-text { container-type: inline-size; }
+
+/* Tailles en largeur de colonne : la sérigraphie tient toujours dans sa colonne. */
+.lockup { line-height: 0.86; }
+
+.mark-sports {
+  font-style: italic;
+  font-weight: 900;
+  font-variation-settings: "wdth" 112;
+  font-size: 7.4cqi;
+  color: var(--sports-blue);
+  margin-left: 0.04em;
+}
+
+.mark-walkman {
+  font-weight: 900;
+  font-variation-settings: "wdth" 125;
+  font-size: 14.2cqi;
+  letter-spacing: -0.035em;
+  color: var(--rubber);
+  white-space: nowrap;
+}
+
+.mark-fmam {
+  font-weight: 300;
+  font-variation-settings: "wdth" 100;
+  font-size: 0.42em;
+  letter-spacing: 0;
+  color: var(--ink);
+}
+
+.lede {
+  margin-top: clamp(1.5rem, 3vw, 2.25rem);
+  font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--rubber);
+  max-width: var(--measure);
+}
+
+.intro {
+  margin-top: 1rem;
+  max-width: var(--measure);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-top: 2rem;
+}
+
+/* Boutons en touches de caoutchouc ; l'appui les enfonce. */
+.key {
+  display: inline-block;
+  padding: 0.85rem 1.3rem;
+  border-radius: var(--radius-key);
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 80ms ease, box-shadow 80ms ease;
+}
+.key-dark {
+  background: linear-gradient(180deg, var(--rubber-light), var(--rubber));
+  color: var(--paper);
+  box-shadow: 0 4px 0 #111, inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+.key-light {
+  background: var(--paper);
+  color: var(--rubber);
+  box-shadow: 0 4px 0 var(--plastic-shade);
+}
+.key:active { transform: translateY(3px); }
+.key-dark:active { box-shadow: 0 1px 0 #111, inset 0 1px 0 rgba(255, 255, 255, 0.12); }
+.key-light:active { box-shadow: 0 1px 0 var(--plastic-shade); }
+
+.hero-device { margin: 0; justify-self: center; }
+.hero-device img {
+  width: min(100%, 22rem);
+  max-height: 82vh;
+  object-fit: contain;
+  filter: drop-shadow(0 30px 40px rgba(110, 70, 0, 0.35));
+}
+
+/* Le seul mouvement non déclenché : le téléphone se pose au chargement. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-device img { animation: settle 900ms cubic-bezier(.2, .7, .2, 1) both; }
+  @keyframes settle {
+    from { opacity: 0; transform: translateY(36px); }
+    to { opacity: 1; transform: none; }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .key { transition: none; }
+}
+
+/* Présentation : la bande de caoutchouc du lecteur. */
+.band {
+  background: var(--rubber);
+  color: #D9D4C5;
+  padding: clamp(3rem, 7vw, 5.5rem) var(--gutter);
+  border-radius: 2rem 2rem 0 0;
+}
+.band h2 {
+  color: var(--paper);
+  max-width: 70rem;
+  margin: 0 auto 1.75rem;
+}
+.band video {
+  display: block;
+  width: 100%;
+  max-width: 70rem;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 1rem;
+  background: #000;
+}
+.band-note {
+  max-width: 70rem;
+  margin: 1rem auto 0;
+  font-size: 0.95rem;
+  color: #A8A396;
+}
+
+/* Les deux faces de la cassette. */
+.side {
+  max-width: 76rem;
+  margin: 0 auto;
+  padding: clamp(3.5rem, 8vw, 6.5rem) var(--gutter);
+}
+
+.side-head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(1rem, 3vw, 2.25rem);
+  margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
+}
+.side-head p:not(.side-letter) {
+  margin-top: 0.9rem;
+  max-width: var(--measure);
+}
+
+/* La lettre de face, comme sur l'étiquette d'une cassette. */
+.side-letter {
+  display: grid;
+  place-items: center;
+  width: clamp(3.5rem, 7vw, 5rem);
+  aspect-ratio: 1;
+  border-radius: 0.9rem;
+  background: var(--paper);
+  border: 3px solid var(--rubber);
+  font-weight: 900;
+  font-variation-settings: "wdth" 125;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  color: var(--rubber);
+}
+
+.track {
+  display: grid;
+  grid-template-columns: minmax(0, 15rem) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(1.5rem, 5vw, 4rem);
+  padding: clamp(1.75rem, 4vw, 2.75rem) 0;
+  border-top: 2px solid rgba(38, 38, 38, 0.18);
+}
+.track > img {
+  width: 100%;
+  filter: drop-shadow(0 18px 24px rgba(110, 70, 0, 0.3));
+}
+.track > img.track-keys { filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.25)); }
+.track-text { max-width: var(--measure); }
+.track-text h3 + p { margin-top: 0.7rem; }
+
+.detail {
+  margin-top: 1.5rem;
+  width: min(100%, 26rem);
+  filter: drop-shadow(0 8px 12px rgba(110, 70, 0, 0.25));
+}
+
+/* Étiquette « Nouveau » : un bout de papier de cassette. */
+.new {
+  display: inline-block;
+  margin-bottom: 0.6rem;
+  padding: 0.15rem 0.6rem;
+  border-radius: 0.35rem;
+  background: var(--paper);
+  border-left: 0.4rem solid var(--window-green);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--rubber);
+}
+
+.side-b {
+  max-width: none;
+  background: var(--plastic-shade);
+  background: linear-gradient(180deg, var(--plastic-shade), #C88E00);
+}
+.side-b > * { max-width: 76rem; margin-left: auto; margin-right: auto; }
+.side-b .side-head { margin-bottom: clamp(2rem, 5vw, 3.5rem); }
+.side-b .side-head p:not(.side-letter) { color: #2E2A20; }
+
+.duo {
+  display: grid;
+  grid-template-columns: minmax(0, 0.42fr) minmax(0, 0.85fr);
+  align-items: end;
+  gap: clamp(1.25rem, 4vw, 3rem);
+}
+.duo figure { margin: 0; }
+.duo img { width: 100%; filter: drop-shadow(0 24px 30px rgba(60, 35, 0, 0.4)); }
+.duo figcaption {
+  margin-top: 0.9rem;
+  font-weight: 700;
+  color: var(--rubber);
+  text-align: center;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin: clamp(2.5rem, 5vw, 3.5rem) auto 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+}
+.steps li {
+  counter-increment: step;
+  padding: 1.1rem 1.2rem;
+  border-radius: var(--radius-key);
+  background: var(--rubber);
+  color: var(--paper);
+  font-weight: 600;
+  line-height: 1.35;
+}
+.steps li::before {
+  content: counter(step);
+  display: block;
+  margin-bottom: 0.4rem;
+  font-weight: 900;
+  font-variation-settings: "wdth" 125;
+  font-size: 1.6rem;
+  color: var(--plastic);
+}
+
+/* Installer. */
+.install {
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: clamp(3.5rem, 8vw, 6rem) var(--gutter);
+}
+.install h2 { margin-bottom: 1.4rem; }
+.needs {
+  margin: 0 0 1.4rem;
+  padding-left: 1.2rem;
+}
+.needs li + li { margin-top: 0.35rem; }
+.install p + pre,
+.install pre + p { margin-top: 1.2rem; }
+code {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 0.92em;
+}
+pre {
+  overflow-x: auto;
+  margin: 1.2rem 0 0;
+  padding: 1.1rem 1.25rem;
+  border-radius: var(--radius-key);
+  background: var(--rubber);
+  color: var(--paper);
+  line-height: 1.6;
+}
+.sim { color: #5A4A1E; font-size: 1rem; }
+
+.foot {
+  padding: 2rem var(--gutter) 2.5rem;
+  border-top: 2px solid rgba(38, 38, 38, 0.18);
+  font-size: 0.92rem;
+  color: #4A3F22;
+}
+.foot p { max-width: 46rem; }
+.foot p + p { margin-top: 0.5rem; }
+
+/* Mobile. */
+@media (max-width: 52rem) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-device img { width: min(100%, 17rem); }
+  .track { grid-template-columns: minmax(0, 9rem) minmax(0, 1fr); align-items: start; }
+  .duo { grid-template-columns: 1fr; }
+  .duo figure:first-child { max-width: 16rem; margin: 0 auto; }
+  .steps { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 34rem) {
+  .top { flex-direction: column; align-items: flex-start; }
+  .track { grid-template-columns: 1fr; }
+  .track > img:not(.track-keys) { max-width: 12rem; }
+}
